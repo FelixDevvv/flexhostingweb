@@ -166,7 +166,7 @@
             background-color: var(--accent-color);
             color: #0d47a1;
             padding: 0.8rem 2rem;
-            border-radius: 4px; /* Cambiado de 50px a 4px para hacerlo cuadrado */
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s;
@@ -180,7 +180,7 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            background-color: #3fb8f5; /* Un poco más oscuro al hover */
+            background-color: #3fb8f5;
         }
 
         .btn::after {
@@ -491,11 +491,12 @@
         </div>
     </section>
     
+    <!-- Planes Básicos -->
     <section class="plans" id="plans">
         <div class="section-title">
             <h2>Nuestros Planes</h2>
-            <p>Elige entre nuestros planes basicos para contratar</p>
-            <h2>Planes Basicos</h2>
+            <p>Elige entre nuestros planes básicos para contratar</p>
+            <h3>Planes Básicos</h3>
         </div>
         <div class="plan-grid">
             <!-- Plan Carbon -->
@@ -574,11 +575,18 @@
                 </div>
             </div>
         </div>
-		
+    </section>
+
+    <!-- Planes Avanzados -->
+    <section class="plans">
+        <div class="section-title">
+            <h3>Planes Avanzados</h3>
+        </div>
+        <div class="plan-grid">
             <!-- Plan Redstone -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3>Plan Oro</h3>
+                    <h3>Plan Redstone</h3>
                     <div class="plan-price">$6.99 <span>/mes</span></div>
                 </div>
                 <div class="plan-features">
@@ -596,11 +604,7 @@
         </div>
     </section>
 
-    <section class="plans" id="plans">
-        <div class="section-title">
-            <h2>Planes Avanzados</h2>
-        </div>
-    
+    <!-- Personalizador de Planes -->
     <section class="custom-plan" id="custom">
         <h3>Personaliza tu Plan</h3>
         <div class="custom-options">
@@ -746,7 +750,6 @@
         const cpu = document.getElementById('cpu');
         const storage = document.getElementById('storage');
         const bandwidth = document.getElementById('bandwidth');
-        const os = document.getElementById('os');
         const finalPrice = document.getElementById('finalPrice');
         
         function calculatePrice() {
@@ -777,9 +780,6 @@
             // Add Bandwidth cost
             price += parseFloat(bandwidth.options[bandwidth.selectedIndex].dataset.price || 0);
             
-            // Add OS cost
-            price += parseFloat(os.options[os.selectedIndex].dataset.price || 0);
-            
             finalPrice.textContent = `$${price.toFixed(2)}/mes`;
         }
         
@@ -800,17 +800,12 @@
             option.dataset.price = index === 0 ? 0 : (6 - index) * 1.00;
         });
         
-        document.querySelectorAll('#os option').forEach((option, index) => {
-            option.dataset.price = index * 5.00;
-        });
-        
         // Add event listeners
         usageType.addEventListener('change', calculatePrice);
         ram.addEventListener('change', calculatePrice);
         cpu.addEventListener('change', calculatePrice);
         storage.addEventListener('change', calculatePrice);
         bandwidth.addEventListener('change', calculatePrice);
-        os.addEventListener('change', calculatePrice);
         
         // Initial calculation
         calculatePrice();
