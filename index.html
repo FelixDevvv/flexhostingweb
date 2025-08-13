@@ -649,10 +649,10 @@
             <div class="option-group">
                 <h4>Tipo de Uso</h4>
                 <select id="usageType">
-                    <option value="software">Software/Web</option>
-                    <option value="gaming">Minecraft</option>
-                    <option value="streaming">Python</option>
-                    <option value="database">Node.js</option>
+                    <option value="software">Software/Web (+$0.00)</option>
+                    <option value="gaming">Minecraft (+$3.00)</option>
+                    <option value="streaming">Python (+$2.50)</option>
+                    <option value="database">Node.js (+$3.50)</option>
                 </select>
             </div>
             
@@ -701,7 +701,7 @@
         
         <div class="price-display">
             <h4>Tu Plan Personalizado</h4>
-            <div class="final-price" id="finalPrice">$5.53/mes</div>
+            <div class="final-price" id="finalPrice">$2.53/mes</div>
             <a href="#" class="btn">Contratar Plan Personalizado</a>
         </div>
     </section>
@@ -782,7 +782,7 @@
         });
         
         // Custom Plan Calculator
-        const basePrice = 2.53;
+        const basePrice = 2.53; // Precio base igual al plan Carbon
         const usageType = document.getElementById('usageType');
         const ram = document.getElementById('ram');
         const cpu = document.getElementById('cpu');
@@ -795,15 +795,16 @@
             
             // Adjust base price based on usage type
             switch(usageType.value) {
-                case 'gaming':
+                case 'gaming': // Minecraft
                     price += 3.00;
                     break;
-                case 'streaming':
-                    price += 4.00;
+                case 'streaming': // Python
+                    price += 2.50;
                     break;
-                case 'database':
-                    price += 5.00;
+                case 'database': // Node.js
+                    price += 3.50;
                     break;
+                // Software/Web no tiene costo adicional
             }
             
             // Add RAM cost
